@@ -14,8 +14,9 @@ def get_client():
         client = Minio(endpoint=mk['ClientUrl'],
                        access_key=mk['MinioAccessKey'],
                        secret_key=mk['MinioSecretKey'],
-                       secure=False
+                       secure=mk['Secure']
                        )
+        print("loaded client with endpoint: ", mk['ClientUrl'])
     except:
         print("Couldn't load client")
         client = None
@@ -45,33 +46,33 @@ def save_model(model, model_id=None, name = '', model_description = ''):
         model_id = str(uuid.uuid4())
     client.put_object('models', model_id, io.BytesIO(obj), len(obj))
 
-    config = get_config()
-
-    if config is not None:
-
-        project_name = config['ProjectName']
-        project_id = config['ProjectId']
-        url = 'https://platform.' + project_name + '.scaleout.se/api/models/'
-        model_url = os.path.join('https://minio.' + project_name + '.platform.demo.scaleout.se/minio/models', )
-
-    else:
-
-        url = ''
-        project_id = ''
-        model_url = ''
-
-    model_name = name
-    myobj = {
-        'uid': model_id,
-        'name': model_name,
-        'description': model_description,
-        'url': model_url,
-        'project': project_id,
-    }
-
-    x = requests.post(url, data=myobj)
-
-    print(x.status_code)
+    # config = get_config()
+    #
+    # if config is not None:
+    #
+    #     project_name = config['ProjectName']
+    #     project_id = config['ProjectId']
+    #     url = 'https://platform.' + project_name + '.scaleout.se/api/models/'
+    #     model_url = os.path.join('https://minio.' + project_name + '.platform.demo.scaleout.se/minio/models', )
+    #
+    # else:
+    #
+    #     url = ''
+    #     project_id = ''
+    #     model_url = ''
+    #
+    # model_name = name
+    # myobj = {
+    #     'uid': model_id,
+    #     'name': model_name,
+    #     'description': model_description,
+    #     'url': model_url,
+    #     'project': project_id,
+    # }
+    #
+    # x = requests.post(url, data=myobj)
+    #
+    # print(x.status_code)
 
 def load_model(model_id):
 
