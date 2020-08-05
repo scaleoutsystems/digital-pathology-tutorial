@@ -234,3 +234,10 @@ class ML_model:
         report = classification_report(y_data, y_predict, target_names=name_classes)
         return report
 
+
+    
+    
+model = ML_model()
+model.model = keras.models.load_model('model_weights.h5')
+report = model.classification_report(x_test,y_test)
+print(report)
