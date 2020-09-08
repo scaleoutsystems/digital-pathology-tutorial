@@ -1,0 +1,20 @@
+# local package
+-e .
+pydantic
+
+matplotlib
+psutil
+tensorflow==2.2.0
+tensorflow_probability
+sklearn
+keras
+numpy
+
+
+
+# uvicorn
+# fastapi
+pydantic
+typing
+# starlette==0.13.6
+# prometheus-client
