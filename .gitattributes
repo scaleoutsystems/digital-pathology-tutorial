@@ -1,0 +1,7 @@
+dataset/raw/y_train.p filter=lfs diff=lfs merge=lfs -text
+dataset/raw/y_val.p filter=lfs diff=lfs merge=lfs -text
+dataset/raw/x_test.p filter=lfs diff=lfs merge=lfs -text
+dataset/raw/x_train.p filter=lfs diff=lfs merge=lfs -text
+dataset/raw/x_val.p filter=lfs diff=lfs merge=lfs -text
+dataset/raw/y_test.p filter=lfs diff=lfs merge=lfs -text
+dataset/processed/data.p filter=lfs diff=lfs merge=lfs -text

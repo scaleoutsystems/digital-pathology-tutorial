@@ -1,4 +1,6 @@
+import shutil
 import pickle
+from pathlib import Path
 import numpy as np
 from matplotlib import pylab as plt
 import keras
@@ -11,6 +13,8 @@ import keras.backend as K
 from sklearn.metrics import classification_report
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
+
+from tempfile import NamedTemporaryFile
 
 import psutil
 learning_rate = 0.001
@@ -87,33 +91,46 @@ class ML_model:
 
     def predict(self, inp):
         print('predicting')
-        if 'file' in inp:
-            print('file')
-            filename = inp['file']
-            print('loading image')
-            img = load_img(filename)
-            print('loaded image')
-            img_array = img_to_array(img)
-            if img_array.shape == (100,100,3):
-                img_array = np.concatenate((img_array, 255*np.ones((100, 100, 1))), axis=2)
-            if img_array.shape != (100,100,4):
-                print('Image has wrong dimension')
+        # if 'file' in inp:
+        print('file')
+        # filename = inp['file']
+        
+        print('saving image to disk...')
+        try:
+            suffix = Path(inp.filename).suffix
+            print(suffix)
+            with NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+                shutil.copyfileobj(inp.file, tmp)
+                tmp_path = Path(tmp.name)
+        finally:
+            inp.file.close()
+        print('saved')
+
+
+        print('loading image')
+        img = load_img(tmp_path)
+        print('loaded image')
+        img_array = img_to_array(img)
+        if img_array.shape == (100,100,3):
+            img_array = np.concatenate((img_array, 255*np.ones((100, 100, 1))), axis=2)
+        if img_array.shape != (100,100,4):
+            print('Image has wrong dimension')
 #                 raise Exception('Image has wrong dimension')
-            print('calling predict')
-            pred = self.model.predict(np.array([img_array]))
-            pred = pred[0].tolist()
-            max_pred = pred.index(max(pred))
-            for i, k in class_keys.items():
-                if k==max_pred:
-                    pred_type = i
-                    break
-            print('prediction')
-            print(pred)
-            print({"most likely":pred_type, "all_probabilities":pred})
-            return {"most likely":pred_type, "all_probabilities":pred}
-        if 'json' in inp:
-            data = inp['json']
-            return self.model.predict(np.array(data))
+        print('calling predict')
+        pred = self.model.predict(np.array([img_array]))
+        pred = pred[0].tolist()
+        max_pred = pred.index(max(pred))
+        for i, k in class_keys.items():
+            if k==max_pred:
+                pred_type = i
+                break
+        print('prediction')
+        print(pred)
+        print({"most likely":pred_type, "all_probabilities":pred})
+        return {"most likely":pred_type, "all_probabilities":pred}
+        # if 'json' in inp:
+        #     data = inp['json']
+        #     return self.model.predict(np.array(data))
 
 
 
