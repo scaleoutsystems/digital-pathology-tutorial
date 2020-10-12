@@ -18,7 +18,7 @@ In labs, launch the terminal. Now you will check out the AML repository. Since y
 ```
 git init
 git remote add origin https://github.com/scaleoutsystems/aml-example-project.git
-git pull origin cookiecutter-structure --allow-unrelated-histories
+git pull --allow-unrelated-histories
 ```
 
 This repository contains a trained model that is ready to be deployed (models/model.tar). Since we are using the default project structure, we can simple run
@@ -39,7 +39,7 @@ Once the model is live, you can make requests to your endpoint. In your labs ses
 
 ### Project description
 
-This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in[[1]](#1). This project is built with a lighter Convulution Neural Network and downsampled images to reduce the computation time and resources. The purpose of the model is, as described by the original authors: 
+This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in[[1]](#1). This project is built with a lighter Convulutional Neural Network and downsampled images to reduce the computation time and resources. The purpose of the model is, as described by the original authors: 
 
 "Reliable recognition of malignant white blood cells is a key step in the diagnosis of hematologic malignancies such as Acute Myeloid Leukemia. Microscopic morphological examination of blood cells is usually performed by trained human examiners, making the process tedious, time-consuming and hard to standardise.
 
