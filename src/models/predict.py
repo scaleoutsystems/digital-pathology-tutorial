@@ -1,7 +1,7 @@
 import os
 import tarfile
-
 import tensorflow as tf
+from fastapi import UploadFile
 
 from src.models.AMLmodel import ML_model
 
@@ -14,11 +14,11 @@ def model_load():
     model = ML_model()
 
     # Load keras model
-    from pathlib import Path
-    base_path = Path(__file__).parent
-    import_folder = str((base_path / "../../models").resolve())
-
-    files = os.listdir('models')
+    # from pathlib import Path
+    # base_path = Path(__file__).parent
+    # import_folder = str((base_path / "model/models").resolve())
+    import_folder = 'model/models'
+    files = os.listdir('model/models')
     model_file = ''
     for ff in files:
         if '.tar' in ff:
@@ -54,3 +54,11 @@ def model_predict(inp, model=[]):
     # Should return JSON.
     res = model.predict(inp)
     return res
+
+# if __name__ == "__main__":
+#     from input_type import PredType
+#     # cellfile = {'pred_request': open('notebooks/cell.png','rb')}
+#     inp = PredType(UploadFile('notebooks/cell.png','rb'))
+#     model = model_load()
+#     res = model_predict(inp, model)
+#     print(res)

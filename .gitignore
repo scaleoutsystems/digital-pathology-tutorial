@@ -30,6 +30,11 @@ pyvenv.cfg
 *.manifest
 *.spec
 
+# Python venv
+lib64
+share
+
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
