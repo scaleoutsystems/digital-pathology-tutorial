@@ -17,8 +17,8 @@ def model_load():
     # from pathlib import Path
     # base_path = Path(__file__).parent
     # import_folder = str((base_path / "model/models").resolve())
-    import_folder = 'model/models'
-    files = os.listdir('model/models')
+    import_folder = 'models/models'
+    files = os.listdir('models/models')
     model_file = ''
     for ff in files:
         if '.tar' in ff:
