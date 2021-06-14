@@ -3,8 +3,6 @@ import pickle
 from pathlib import Path
 
 base_path = Path(__file__).parent
-# import_folder = str((base_path / "../../dataset").resolve())
-
 
 def load_processed(version):
     f = open("dataset/processed/"+version, 'rb')

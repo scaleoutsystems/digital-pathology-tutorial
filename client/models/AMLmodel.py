@@ -76,7 +76,7 @@ def construct_model():
     return model
 
 
-class ML_model:
+class AMLModel:
 
     def __init__(self):
         self.model = construct_model()
@@ -86,14 +86,7 @@ class ML_model:
         self.val_accuracy = []
         self.val_loss = []
 
-
-
-
     def predict(self, inp):
-        print('predicting')
-        # if 'file' in inp:
-        print('file')
-        # filename = inp['file']
         
         print('saving image to disk...')
         try:
@@ -104,19 +97,14 @@ class ML_model:
                 tmp_path = Path(tmp.name)
         finally:
             inp.file.close()
-        print('saved')
 
-
-        print('loading image')
         img = load_img(tmp_path)
-        print('loaded image')
         img_array = img_to_array(img)
         if img_array.shape == (100,100,3):
             img_array = np.concatenate((img_array, 255*np.ones((100, 100, 1))), axis=2)
         if img_array.shape != (100,100,4):
             print('Image has wrong dimension')
 #                 raise Exception('Image has wrong dimension')
-        print('calling predict')
         pred = self.model.predict(np.array([img_array]))
         pred = pred[0].tolist()
         max_pred = pred.index(max(pred))
@@ -124,15 +112,9 @@ class ML_model:
             if k==max_pred:
                 pred_type = i
                 break
-        print('prediction')
         print(pred)
         print({"most likely":pred_type, "all_probabilities":pred})
         return {"most likely":pred_type, "all_probabilities":pred}
-        # if 'json' in inp:
-        #     data = inp['json']
-        #     return self.model.predict(np.array(data))
-
-
 
     def partial_fit(self, x_train, y_train, batch_size=50, data_augmentation=True):
 
@@ -182,8 +164,6 @@ class ML_model:
                                          # callbacks=[mcp_save])
 
 
-
-
     def fit(self, x_train, y_train, x_val, y_val, epochs=10, batch_size=50, data_augmentation=True, savings=None):
 
         for e in range(epochs):
@@ -214,12 +194,6 @@ class ML_model:
         return temp_model.evaluate(x_data,y_data)
 
 
-
-
-
-
-
-
     def confusion_matrix(self, x_data, y_data):
 
         y_pred = self.model.predict_classes(x_data)
@@ -229,14 +203,6 @@ class ML_model:
         for pred_, true_ in zip(y_pred,y_data):
             M[true_,pred_] +=1
 
-        # for p in range(15):
-        #     for l in range(15):
-        #         p_s = set(np.where(y_pred == p)[0])
-        #         l_s = set(np.where(y_data == l)[0])
-        #         M[p,l] = len(p_s.intersection(l_s))
-        #
-        # for p in range(15):
-        #     len(np.where(y_pred == p)[0])
         return M
 
 
