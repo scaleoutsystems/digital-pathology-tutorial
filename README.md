@@ -5,6 +5,19 @@
 
 ```pip install -r requirements.txt```
 
+
+### Download the data
+Download the dataset from:
+https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
+
+
+### Prepare the datasets in partions
+
+place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
+```
+python prepare_dataset.py NR_OF_PARTITIONS
+```
+
 ### Deploy the model
 
 Start a new project, for example “AML example”
