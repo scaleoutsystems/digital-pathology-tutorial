@@ -50,10 +50,8 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 
 ### Data
-![Cell image](https://aml-tjn905630c.studio.k8s-prod.pharmb.io/files/image.png?_xsrf=2%7C0dbbad6d%7C0677356ed7f45001e6613a26bb187d12%7C1589443827)
+![Cell image](image.png)
 
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
 
 ## References
 <a id="1">[1]</a> 
