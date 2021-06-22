@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import os
 
-from src.models.AMLmodel import ML_model
+from models.AMLmodel import ML_model
 
 from pathlib import Path
 
