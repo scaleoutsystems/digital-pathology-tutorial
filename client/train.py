@@ -24,9 +24,10 @@ def train(model, settings):
    # model.fit(x_train, y_train, x_val, y_val, batch_size=8, data_augmentation=False)
 
     labels_path = 'dataset/processed/data_partitions/partition0/labels.npy' # replace this with the relevant labels path
+    data_path = 'dataset/processed/data_partitions/partition0/data_singlets'
     labels = np.load(labels_path, allow_pickle=True).item()
     ids = [label for label in labels]
-    train_gen = DataGenerator(ids, labels, dim=(100,100), batch_size=32)
+    train_gen = DataGenerator(ids, labels,data_path, dim=(100,100), batch_size=32)
 
     model.fit(train_gen)
     print("-- TRAINING COMPLETED --", flush=True)
