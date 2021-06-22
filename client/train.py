@@ -26,20 +26,35 @@ def train(model, settings):
     labels_path = 'dataset/processed/data_partitions/partition0/labels.npy' # replace this with the relevant labels path
     data_path = 'dataset/processed/data_partitions/partition0/data_singlets'
     labels = np.load(labels_path, allow_pickle=True).item()
-    ids = [label for label in labels]
-    train_gen = DataGenerator(ids, labels,data_path, dim=(100,100), batch_size=32)
+    ids = np.array([label for label in labels])
+    np.random.shuffle(ids)
 
-    model.fit(train_gen)
+    try:
+        train_ids = np.load('trainids.npy')
+        val_ids = np.load('valids.npy')
+    except:
+        train_split_index = int(len(ids)*0.9)
+        train_ids = ids[:train_split_index]
+        val_ids = ids[train_split_index:]
+
+        np.save('trainids.npy', train_ids)
+        np.save('valids.npy', val_ids)
+
+
+    train_gen = DataGenerator(train_ids, labels,data_path, dim=(100,100), batch_size=32)
+    val_gen = DataGenerator(val_ids, labels,data_path, dim=(100,100), batch_size=32)
+
+    model.fit(train_gen, validation_data=val_gen)
     print("-- TRAINING COMPLETED --", flush=True)
     return model
 
 if __name__ == '__main__':
 
-    with open('settings.yaml', 'r') as fh:
-        try:
-            settings = dict(yaml.safe_load(fh))
-        except yaml.YAMLError as e:
-            raise(e)
+    #with open('settings.yaml', 'r') as fh:
+    #    try:
+     #       settings = dict(yaml.safe_load(fh))
+      #  except yaml.YAMLError as e:
+       #     raise(e)
 
     from fedn.utils.kerashelper import KerasHelper
     helper = KerasHelper()
@@ -48,5 +63,6 @@ if __name__ == '__main__':
     from models.AMLmodel import construct_model
     model = construct_model()
     model.set_weights(weights)
+    settings = []
     model = train(model,settings)
     helper.save_model(model.get_weights(),sys.argv[2])
