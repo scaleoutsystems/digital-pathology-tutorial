@@ -1,20 +1,3 @@
-# local package
--e .
-pydantic
-
-matplotlib
-psutil
-tensorflow>=2.4.0
-tensorflow_probability
+tensorflow
+pandas
 sklearn
-keras
-numpy
-
-
-
-# uvicorn
-# fastapi
-pydantic
-typing
-# starlette==0.13.6
-# prometheus-client
