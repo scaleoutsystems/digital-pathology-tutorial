@@ -29,9 +29,17 @@ def train(model, settings):
     ids = np.array([label for label in labels])
     np.random.shuffle(ids)
 
-    train_split_index = int(len(ids)*0.9)
-    train_ids = ids[:train_split_index]
-    val_ids = ids[train_split_index:]
+    try:
+        train_ids = np.load('trainids.npy')
+        val_ids = np.load('valids.npy')
+    except:
+        train_split_index = int(len(ids)*0.9)
+        train_ids = ids[:train_split_index]
+        val_ids = ids[train_split_index:]
+
+        np.save('trainids.npy', train_ids)
+        np.save('valids.npy', val_ids)
+
 
     train_gen = DataGenerator(train_ids, labels,data_path, dim=(100,100), batch_size=32)
     val_gen = DataGenerator(val_ids, labels,data_path, dim=(100,100), batch_size=32)
