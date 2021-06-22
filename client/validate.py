@@ -8,17 +8,22 @@ import tensorflow.keras as keras
 import tensorflow.keras.models as krm
 import pickle
 import yaml
+import json
 import numpy as np
+from models.AMLmodel import AMLModel
+#from data.load_data import load_processed
+#from data.read_data import read_data
 from data.datagenerator import DataGenerator
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
-def train(model, settings):
-    print("-- RUNNING TRAINING --", flush=True)
+def validate(model, settings):
+    print("-- RUNNING VALIDATION --", flush=True)
 
-    labels_path = '../data/labels.npy' # replace this with the relevant labels path
-    data_path = '../data/data_singlets'
+
+    labels_path = 'dataset/processed/data_partitions/partition0/labels.npy' # replace this with the relevant labels path
+    data_path = 'dataset/processed/data_partitions/partition0/data_singlets'
     labels = np.load(labels_path, allow_pickle=True).item()
 
 
@@ -39,11 +44,26 @@ def train(model, settings):
     train_gen = DataGenerator(train_ids, labels,data_path, dim=(100,100), batch_size=32)
     val_gen = DataGenerator(val_ids, labels,data_path, dim=(100,100), batch_size=32)
 
-    model.fit(train_gen, validation_data=val_gen)
-    print("-- TRAINING COMPLETED --", flush=True)
-    return model
+    model_score = model.evaluate(train_gen)
+    model_score_test = model.evaluate(val_gen)
+
+    report = {
+        "classification_report": '',
+        "training_loss": model_score[0],
+        "training_accuracy": model_score[1],
+        "test_loss": model_score_test[0],
+        "test_accuracy": model_score_test[1],
+    }
+    print("-- VALIDATION COMPLETED --", flush=True)
+    return report
 
 if __name__ == '__main__':
+
+    #with open('settings.yaml', 'r') as fh:
+    #    try:
+     #       settings = dict(yaml.safe_load(fh))
+      #  except yaml.YAMLError as e:
+       #     raise(e)
 
     from fedn.utils.kerashelper import KerasHelper
     helper = KerasHelper()
@@ -53,5 +73,6 @@ if __name__ == '__main__':
     model = construct_model()
     model.set_weights(weights)
     settings = []
-    model = train(model, settings)
-    helper.save_model(model.get_weights(), sys.argv[2])
+    report = validate(model, settings)
+    with open(sys.argv[2],"w") as fh:
+        fh.write(json.dumps(report))
