@@ -3,8 +3,7 @@ import tensorflow.keras as keras
 import os
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
-    def __init__(self, list_IDs, labels, batch_size=32, dim=(100,100), n_channels=4,
-                 data_path='dataset/processed/data_partitions/partition0/data_singlets',
+    def __init__(self, list_IDs, labels, data_path,  batch_size=32, dim=(100,100), n_channels=4,
                  n_classes=15, shuffle=True):
         'Initialization'
         self.dim = dim
