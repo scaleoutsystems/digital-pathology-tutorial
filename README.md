@@ -8,6 +8,8 @@ We compile an annotated image dataset of over 18,000 white blood cells, use it t
 
 Our approach holds the potential to be used as a classification aid for examining much larger numbers of cells in a smear than can usually be done by a human expert. This will allow clinicians to recognize malignant cell populations with lower prevalence at an earlier stage of the disease." [[2]](#2).
 
+![Cell image](image.png)
+
 ### Start client
 1. Create a virtual environment and activate it
 ```bash
@@ -40,7 +42,6 @@ $ fedn run client -in client.yaml
 Download the dataset from:
 https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
 
-![Cell image](image.png)
 
 ### Prepare the datasets in partions
 
