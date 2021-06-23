@@ -18,7 +18,12 @@ aml-client
    requirements.txt 
    --> data
 ```
-requirements.yaml should have the same content as the corresponding file in this repostitory. 
+requirements.txt should have the same content as the corresponding file in this repostitory. 
+```yaml
+tensorflow
+pandas
+sklearn
+```
 
 ### Download a data partition
 
