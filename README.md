@@ -74,6 +74,8 @@ $ fedn run client -in client.yaml
 
 ## Prepare own partitions for experimentation with FL
 
+First clone this repostitory. 
+
 ### Download the data
 Download the dataset from:
 https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
