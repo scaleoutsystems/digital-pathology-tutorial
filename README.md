@@ -1,56 +1,4 @@
 # AML Example Project
-### Prerequisites
-
-### Install dependencies with
-
-```pip install -r requirements.txt```
-
-
-### Download the data
-Download the dataset from:
-https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
-
-
-### Prepare the datasets in partions
-
-place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
-```
-python prepare_dataset.py NR_OF_PARTITIONS
-```
-
-### Deploy the model
-
-Start a new project, for example “AML example”
-
-Make sure all resources have been deployed (in particular, click the “Minio”-link and ensure that it responds)
-
-Start a new “Labs” session. It can take a few minutes to initialise it.
-
-In labs, launch the terminal. Now you will check out the AML repository. Since you’re checking out into a non-empty folder, you have to do it this way:
-
-```
-git init
-git remote add origin https://github.com/scaleoutsystems/aml-example-project.git
-git pull --allow-unrelated-histories
-```
-
-This repository contains a trained model that is ready to be deployed (models/model.tar). Since we are using the default project structure, we can simple run
-```
-stackn create model -n aml-model -r minor
-```
-If you’re not using the default structure, you need to specify the model file to deploy (it should contain your model as well as scripts necessary to run predictions etc).
-
-It can take a minute or so (the model is ~100MB, and needs to be uploaded to the project’s S3 storage).
-
-Again, since we are using the default structure, we can deploy this model using the default Python deployment environment.
-```
-stackn create deployment -m amp-model -d default-python
-```
-Again, wait for the deployment to be initialized. You can view follow the progress in the "Deployments"-page.
-
-Once the model is live, you can make requests to your endpoint. In your labs session, go to the folder ``notebooks``, and ``predict.ipynb``. Replace the URL with your endpoint (note that it should end with a forward slash.) You are now ready to run the notebook for your first prediction.
-
-### Project description
 
 This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in[[1]](#1). This project is built with a lighter Convulutional Neural Network and downsampled images to reduce the computation time and resources. The purpose of the model is, as described by the original authors: 
 
@@ -60,11 +8,78 @@ We compile an annotated image dataset of over 18,000 white blood cells, use it t
 
 Our approach holds the potential to be used as a classification aid for examining much larger numbers of cells in a smear than can usually be done by a human expert. This will allow clinicians to recognize malignant cell populations with lower prevalence at an earlier stage of the disease." [[2]](#2).
 
-
-
-### Data
 ![Cell image](image.png)
 
+## Attaching a client to an existing Reducer 
+
+Create a folder with the following structure 
+```yaml
+aml-client
+   requirements.txt 
+   --> data
+```
+requirements.yaml should have the same content as the corresponding file in this repostitory. 
+
+### Download a data partition
+
+Obtain a data partition: 
+
+https://r31268eaa.studio.scaleoutsystems.com/data/partitions/partition3.tar.gz?Content-Disposition=attachment%3B%20filename%3D%22partitions%2Fpartition3.tar.gz%22&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=xy5HZeMa%2F20210623%2F%2Fs3%2Faws4_request&X-Amz-Date=20210623T082458Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f015733380aab8b422ebb87716aeaa1e2f30a0dd20e7a1db19d8223f7b5c7cf7
+
+Unpack the downloaded file and copy the content to the 'data' folder.
+```yaml
+aml-client
+   requirements.txt 
+   --> data
+         --> data_singlets
+         --> labels.npy
+```
+
+### Start client
+
+Standing in your created folder: 
+
+
+1. Create a virtual environment and activate it
+```bash
+$ python3 -m venv env
+$ source env/bin/activate
+```
+
+2. Install the fedn client
+```bash
+$ pip install fedn
+```
+
+3. Setup dependencies to set up environment
+Install dependncies by the following command:
+```bash
+$ pip install -r requirements.txt
+``` 
+
+4. Get the client config for your federation!
+a) Start a reducer and combiner and base services by reading instructions in `https://github.com/scaleoutsystems/fedn.git/ or navigate to your pre-setup federation page (for example Scaleout Studio!)
+
+5. Download the file and place it in the  folder (replacing any potential existing client.yaml)
+
+6. Start the client!
+```bash
+$ fedn run client -in client.yaml
+```
+
+## Prepare own partitions for experimentation with FL
+
+### Download the data
+Download the dataset from:
+https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
+
+
+### Partion the dataset
+
+place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
+```
+python prepare_dataset.py NR_OF_PARTITIONS
+```
 
 ## References
 <a id="1">[1]</a> 
