@@ -27,11 +27,13 @@ Obtain a data partition:
 https://r31268eaa.studio.scaleoutsystems.com/data/partitions/partition3.tar.gz?Content-Disposition=attachment%3B%20filename%3D%22partitions%2Fpartition3.tar.gz%22&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=xy5HZeMa%2F20210623%2F%2Fs3%2Faws4_request&X-Amz-Date=20210623T082458Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f015733380aab8b422ebb87716aeaa1e2f30a0dd20e7a1db19d8223f7b5c7cf7
 
 Unpack the downloaded file and copy the content to the 'data' folder.
+```yaml
 aml-client
    requirements.txt 
    --> data
          --> data_singlets
          --> labels.npy
+```
 
 ### Start client
 
