@@ -13,11 +13,11 @@ Our approach holds the potential to be used as a classification aid for examinin
 ## Attaching a client to an existing Reducer 
 
 Create a folder with the following structure 
-
+```yaml
 aml-client
    requirements.txt 
    --> data
-   
+```
 requirements.yaml should have the same content as the corresponding file in this repostitory. 
 
 ### Download a data partition
