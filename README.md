@@ -18,6 +18,34 @@ place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
 python prepare_dataset.py NR_OF_PARTITIONS
 ```
 
+### Start client
+1. Create a virtual environment and activate it
+```bash
+$ python3 -m venv env
+$ source env/bin/activate
+```
+
+2. Install the fedn client
+```bash
+$ pip install fedn
+```
+
+3. Setup dependencies to set up environment
+Install dependncies by the following command:
+```bash
+$ pip install -r requirements.txt
+``` 
+
+4. Get the client config for your federation!
+a) Start a reducer and combiner and base services by reading instructions in `https://github.com/scaleoutsystems/fedn.git/ or navigate to your pre-setup federation page (for example Scaleout Studio!)
+
+5. Download the file and place it in the  folder (replacing any potential existing client.yaml)
+
+6. Start the client!
+```bash
+$ fedn run client -in client.yaml
+```
+
 ### Deploy the model
 
 Start a new project, for example “AML example”
