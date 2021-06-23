@@ -11,6 +11,7 @@ Our approach holds the potential to be used as a classification aid for examinin
 ![Cell image](image.png)
 
 ### Start client
+
 1. Create a virtual environment and activate it
 ```bash
 $ python3 -m venv env
@@ -38,12 +39,14 @@ a) Start a reducer and combiner and base services by reading instructions in `ht
 $ fedn run client -in client.yaml
 ```
 
+## Prepare partitions for experimentation with FL
+
 ### Download the data
 Download the dataset from:
 https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
 
 
-### Prepare the datasets in partions
+### Partion the dataset
 
 place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
 ```
