@@ -39,7 +39,7 @@ a) Start a reducer and combiner and base services by reading instructions in `ht
 $ fedn run client -in client.yaml
 ```
 
-## Prepare partitions for experimentation with FL
+## Prepare own partitions for experimentation with FL
 
 ### Download the data
 Download the dataset from:
