@@ -62,12 +62,9 @@ Install dependncies by the following command:
 $ pip install -r requirements.txt
 ``` 
 
-4. Get the client config for your federation!
+4. Download the file and place it in the  folder (replacing any potential existing client.yaml)
 
-
-5. Download the file and place it in the  folder (replacing any potential existing client.yaml)
-
-6. Start the client!
+5. Start the client!
 ```bash
 $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
