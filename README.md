@@ -16,7 +16,7 @@ Create a folder with the following structure
 ```yaml
 aml-client
    requirements.txt 
-   --> data
+   data/
 ```
 requirements.txt should have the same content as the corresponding file in this repostitory. 
 ```yaml
@@ -35,9 +35,9 @@ Unpack the downloaded file and copy the content to the 'data' folder.
 ```yaml
 aml-client
    requirements.txt 
-   --> data
-         --> data_singlets
-         --> labels.npy
+   data
+      --> data_singlets
+      --> labels.npy
 ```
 
 ### Start client
