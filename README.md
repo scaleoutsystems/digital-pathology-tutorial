@@ -16,9 +16,14 @@ Create a folder with the following structure
 ```yaml
 aml-client
    requirements.txt 
-   --> data
+   data/
 ```
-requirements.yaml should have the same content as the corresponding file in this repostitory. 
+requirements.txt should have the same content as the corresponding file in this repostitory. 
+```yaml
+tensorflow
+pandas
+sklearn
+```
 
 ### Download a data partition
 
@@ -30,9 +35,9 @@ Unpack the downloaded file and copy the content to the 'data' folder.
 ```yaml
 aml-client
    requirements.txt 
-   --> data
-         --> data_singlets
-         --> labels.npy
+   data/
+      --> data_singlets
+      --> labels.npy
 ```
 
 ### Start client
@@ -64,10 +69,12 @@ a) Start a reducer and combiner and base services by reading instructions in `ht
 
 6. Start the client!
 ```bash
-$ fedn run client -in client.yaml
+$ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
 ## Prepare own partitions for experimentation with FL
+
+First clone this repostitory. 
 
 ### Download the data
 Download the dataset from:
