@@ -35,7 +35,7 @@ Unpack the downloaded file and copy the content to the 'data' folder.
 ```yaml
 aml-client
    requirements.txt 
-   data
+   data/
       --> data_singlets
       --> labels.npy
 ```
