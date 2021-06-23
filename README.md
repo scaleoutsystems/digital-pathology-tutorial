@@ -69,7 +69,7 @@ a) Start a reducer and combiner and base services by reading instructions in `ht
 
 6. Start the client!
 ```bash
-$ fedn run client -in client.yaml
+$ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
 ## Prepare own partitions for experimentation with FL
