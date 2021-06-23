@@ -63,7 +63,7 @@ $ pip install -r requirements.txt
 ``` 
 
 4. Get the client config for your federation!
-a) Start a reducer and combiner and base services by reading instructions in `https://github.com/scaleoutsystems/fedn.git/ or navigate to your pre-setup federation page (for example Scaleout Studio!)
+
 
 5. Download the file and place it in the  folder (replacing any potential existing client.yaml)
 
