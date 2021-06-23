@@ -74,7 +74,7 @@ $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 
 ## Prepare own partitions for experimentation with FL
 
-First clone this repostitory. 
+Clone this repostitory and follow the below instructions to obtain and partition the raw dataset. Note that the download can take up to a few hours depending on internet connection.  
 
 ### Download the data
 Download the dataset from:
@@ -83,8 +83,9 @@ https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
 
 ### Partion the dataset
 
-place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
-```
+place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw', then: 
+
+```bash
 python prepare_dataset.py NR_OF_PARTITIONS
 ```
 
