@@ -10,7 +10,40 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ![Cell image](image.png)
 
+## Attaching a client to an existing Reducer 
+
+Create a folder with the following structure 
+```yaml
+aml-client
+   requirements.txt 
+   data/
+```
+requirements.txt should have the same content as the corresponding file in this repostitory. 
+```yaml
+tensorflow
+pandas
+sklearn
+```
+
+### Download a data partition
+
+Obtain a data partition (separate workshop instructions): 
+
+Unpack the downloaded file and copy the content to the 'data' folder.
+```yaml
+aml-client
+   requirements.txt 
+   data/
+      --> data_singlets
+      --> labels.npy
+```
+
+*(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create own partitions)*
+
 ### Start client
+
+Standing in your created folder: 
+
 
 1. Create a virtual environment and activate it
 ```bash
@@ -29,17 +62,16 @@ Install dependncies by the following command:
 $ pip install -r requirements.txt
 ``` 
 
-4. Get the client config for your federation!
-a) Start a reducer and combiner and base services by reading instructions in `https://github.com/scaleoutsystems/fedn.git/ or navigate to your pre-setup federation page (for example Scaleout Studio!)
+4. Download the file and place it in the  folder (replacing any potential existing client.yaml)
 
-5. Download the file and place it in the  folder (replacing any potential existing client.yaml)
-
-6. Start the client!
+5. Start the client!
 ```bash
-$ fedn run client -in client.yaml
+$ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
 ## Prepare own partitions for experimentation with FL
+
+Clone this repostitory and follow the below instructions to obtain and partition the raw dataset. Note that the download can take up to a few hours depending on internet connection.  
 
 ### Download the data
 Download the dataset from:
@@ -48,8 +80,9 @@ https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
 
 ### Partion the dataset
 
-place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw'
-```
+place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw', then: 
+
+```bash
 python prepare_dataset.py NR_OF_PARTITIONS
 ```
 

@@ -10,9 +10,6 @@ import pickle
 import yaml
 import json
 import numpy as np
-from models.AMLmodel import AMLModel
-#from data.load_data import load_processed
-#from data.read_data import read_data
 from data.datagenerator import DataGenerator
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -22,8 +19,8 @@ def validate(model, settings):
     print("-- RUNNING VALIDATION --", flush=True)
 
 
-    labels_path = 'dataset/processed/data_partitions/partition0/labels.npy' # replace this with the relevant labels path
-    data_path = 'dataset/processed/data_partitions/partition0/data_singlets'
+    labels_path = '../data/labels.npy' # replace this with the relevant labels path
+    data_path = '../data/data_singlets'
     labels = np.load(labels_path, allow_pickle=True).item()
 
 
@@ -59,11 +56,6 @@ def validate(model, settings):
 
 if __name__ == '__main__':
 
-    #with open('settings.yaml', 'r') as fh:
-    #    try:
-     #       settings = dict(yaml.safe_load(fh))
-      #  except yaml.YAMLError as e:
-       #     raise(e)
 
     from fedn.utils.kerashelper import KerasHelper
     helper = KerasHelper()
