@@ -29,7 +29,7 @@ pandas
 sklearn
 ```
 
-### Download a data partition
+### Obtain a data partition
 
 Obtain a data partition (if you are doing this tuturial as part of a workshop you will obtain a download link from the instructor, if not see instructions below to download the raw data and create your own partitions), then : 
 
