@@ -1,4 +1,4 @@
-# AML Example Project
+# Acute Myeloid Leukemia FEDn/Studio example 
 
 This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in [[1]](#1). This project is built with a lighter Convulutional Neural Network and downsampled images to reduce the computation time and resources. The purpose of the model is, as described by the original authors: 
 
@@ -14,7 +14,7 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio (SaaS) or follow the instructions here to set up the network yourself on your own servers: https://github.com/scaleoutsystems/fedn.   
 
-### Setting up the client structure and local environment
+### Set up the client structure and local environment
 
 Create a folder with the following structure 
 ```yaml
@@ -60,12 +60,12 @@ $ pip install fedn
 ```
 
 3. Setup dependencies to set up environment
-Install dependncies by the following command:
+Install dependencies by the following command:
 ```bash
 $ pip install -r requirements.txt
 ``` 
 
-4. Download the file and place it in the  folder (replacing any potential existing client.yaml)
+4. Access the FEDn UI and download the network configuration file, then place it in the folder (replacing any potential existing client.yaml)
 
 5. Start the client!
 ```bash
