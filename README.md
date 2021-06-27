@@ -103,6 +103,7 @@ Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in t
 
 ### Serving a given model version with Tensorflow Serving 
 
+Follow instructions in 'Deploy.ipynb'. 
 
 ## References
 <a id="1">[1]</a> 
