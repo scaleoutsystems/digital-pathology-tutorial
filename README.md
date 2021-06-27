@@ -90,6 +90,16 @@ python prepare_dataset.py NR_OF_PARTITIONS
 ```
 where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
+## Training, evaluating and serving a given version of the model from the FEDn model trail (Scaleout Studio)
+The following sections assumes that you are working in a Scaleout Studio project ((Scaleout Studio)[https://www.scaleoutsystems.com/features]).
+
+### Training a centralized model for given data partitions 
+
+### Plotting a confusion matrix for a given model version in the FEDn model trail 
+
+### Serving a given model version with Tensorflow Serving 
+
+
 ## References
 <a id="1">[1]</a> 
 Matek, C., Schwarz, S., Marr, C., & Spiekermann, K. (2019). A Single-cell Morphological Dataset of Leukocytes from AML Patients and Non-malignant Controls [Data set]. The Cancer Imaging Archive." https://doi.org/10.7937/tcia.2019.36f5o9ld
