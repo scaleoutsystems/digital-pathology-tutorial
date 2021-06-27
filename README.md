@@ -75,7 +75,7 @@ $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ## Preparing your own data partitions 
 The following instructions are for those that want to prepare their own data partiations from the raw dataset (for example, if you want to change the number of partitions). First, clone this repostitory and install dependencies. 
 
-### Download the data
+### Download the raw data
 Download the dataset from:
 https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
 
