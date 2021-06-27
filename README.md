@@ -90,7 +90,7 @@ python prepare_dataset.py NR_OF_PARTITIONS
 ```
 where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
-## Training, evaluating and serving a given version of the model from the FEDn model trail (Scaleout Studio)
+## Training, evaluating and serving the FEDn model (Scaleout Studio)
 The following sections assumes that you are working in a Scaleout Studio project ((Scaleout Studio)[https://www.scaleoutsystems.com/features]).
 
 ### Training a centralized model for given data partitions 
