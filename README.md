@@ -10,7 +10,11 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ![Cell image](image.png)
 
-## Attaching a client to an existing Reducer 
+## Configuring a client to attach to a FEDn network 
+
+The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio (SaaS) or follow the instructions here to set up the network yourself: https://github.com/scaleoutsystems/fedn.   
+
+### Setting up the client structure and local environment
 
 Create a folder with the following structure 
 ```yaml
@@ -44,7 +48,6 @@ aml-client
 
 Standing in your created folder: 
 
-
 1. Create a virtual environment and activate it
 ```bash
 $ python3 -m venv env
@@ -69,14 +72,14 @@ $ pip install -r requirements.txt
 $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
-## Prepare own partitions for experimentation with FL
-
-Clone this repostitory and follow the below instructions to obtain and partition the raw dataset. Note that the download can take up to a few hours depending on internet connection.  
+## Preparing your own data partitions 
+The following instructions are for those that want to prepare their own data partiations from the raw dataset (for example, if you want to change the number of partitions). First, clone this repostitory and install dependencies. 
 
 ### Download the data
 Download the dataset from:
 https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=61080958
 
+*Note that the download requires a third-party plugin, and that it can take up to a few hours depending on internet connection.*  
 
 ### Partion the dataset
 
@@ -85,6 +88,7 @@ place the downloaded folder 'AML-Cytomorphology' in 'dataset/raw', then:
 ```bash
 python prepare_dataset.py NR_OF_PARTITIONS
 ```
+where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
 ## References
 <a id="1">[1]</a> 
