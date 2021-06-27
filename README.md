@@ -12,7 +12,7 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ## Configuring a client to attach to a FEDn network 
 
-The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio (SaaS) or follow the instructions here to set up the network yourself: https://github.com/scaleoutsystems/fedn.   
+The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio (SaaS) or follow the instructions here to set up the network yourself on your own servers: https://github.com/scaleoutsystems/fedn.   
 
 ### Setting up the client structure and local environment
 
@@ -31,7 +31,7 @@ sklearn
 
 ### Download a data partition
 
-Obtain a data partition (separate workshop instructions): 
+Obtain a data partition (if you are doing this tuturial as part of a workshop you will obtain a download link from the instructor, if not see instructions below to download the raw data and create your own partitions), then : 
 
 Unpack the downloaded file and copy the content to the 'data' folder.
 ```yaml
