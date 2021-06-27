@@ -91,11 +91,15 @@ python prepare_dataset.py NR_OF_PARTITIONS
 where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
 ## Training, evaluating and serving the FEDn model (Scaleout Studio)
-The following sections assumes that you are working in a Scaleout Studio project ([Scaleout Studio](https://www.scaleoutsystems.com])).
+The following sections assumes that you are working in a Scaleout Studio project ([Scaleout Studio](https://www.scaleoutsystems.com])). In your project in Studio, deploy a Jupyter Lab instance from the default 'Jupyter STACKn' image, mounting the project-volume and minio-volume volumes. Then open up a terminal (in your lab instance) and clone this repostitory onto project-volume (to make your work persistant between lab sessions).
 
-### Training a centralized model for given data partitions 
+Obtain the raw data, ingest it to your project (for example by uploading it to Minio, then it will be accessible in the Lab session on the 'minio-volume') and create partitions as you see fit (see instructions above). 
+
+### Training a centralized model for a given data partitions 
+Follow the instructions in the notebook 'AML_demo.ipynb'. 
 
 ### Plotting a confusion matrix for a given model version in the FEDn model trail 
+Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible from the Minio instance in your Studio project, if this is not the case, some modifications may be needed.)
 
 ### Serving a given model version with Tensorflow Serving 
 
