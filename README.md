@@ -101,9 +101,6 @@ Follow the instructions in the notebook 'AML_demo.ipynb'.
 ### Plotting a confusion matrix for a given model version in the FEDn model trail 
 Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible from the Minio instance in your Studio project, if this is not the case, some modifications may be needed.)
 
-### Serving a given model version with Tensorflow Serving 
-
-Follow instructions in 'Deploy.ipynb'. 
 
 ## References
 <a id="1">[1]</a> 
