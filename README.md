@@ -1,6 +1,8 @@
 # Acute Myeloid Leukemia FEDn/Studio example 
 
-This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in [[1]](#1). This project is built with a lighter Convulutional Neural Network and downsampled images to reduce the computation time and resources. The purpose of the model is, as described by the original authors: 
+This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in [[1]](#1). Compared to the original work, this project is built with a lighter Convulutional Neural Network and downsampled images to reduce the computation time and resources.  
+
+The purpose of the model is, as described by the original authors: 
 
 "Reliable recognition of malignant white blood cells is a key step in the diagnosis of hematologic malignancies such as Acute Myeloid Leukemia. Microscopic morphological examination of blood cells is usually performed by trained human examiners, making the process tedious, time-consuming and hard to standardise.
 
@@ -12,11 +14,11 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ## Configuring a client to attach to a FEDn network 
 
-The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio (SaaS) or follow the instructions here to set up the network yourself on your own servers: https://github.com/scaleoutsystems/fedn.   
+The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio or follow the instructions here to set up the network yourself on your own servers: https://github.com/scaleoutsystems/fedn.   
 
 ### Set up the client structure and local environment
 
-Create a folder with the following structure 
+On you local computer/device, create a folder with the following structure 
 ```yaml
 aml-client
    requirements.txt 
@@ -31,7 +33,7 @@ sklearn
 
 ### Obtain a data partition
 
-Obtain a data partition (if you are doing this tuturial as part of a workshop you will obtain a download link from the instructor, if not see instructions below to download the raw data and create your own partitions). 
+Obtain a data partition (if you are doing this tuturial as part of a workshop you will obtain a download link from the instructor, if not see instructions below to download the raw data and create your own data partitions). 
 
 Unpack the downloaded file and copy the content to the 'data' folder.
 ```yaml
@@ -42,9 +44,9 @@ aml-client
       --> labels.npy
 ```
 
-*(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create own partitions)*
+*(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create your own partitions)*
 
-### Start client
+### Start a native client (OSX/Linux)
 
 Standing in your created folder: 
 
@@ -73,7 +75,7 @@ $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
 ## Preparing your own data partitions 
-The following instructions are for those that want to prepare their own data partiations from the raw dataset (for example, if you want to change the number of partitions). First, clone this repostitory and install dependencies. 
+The following instructions are for those that want to prepare their own data partiations from the raw dataset (for example, if you want to change the number of partitions). First, clone this repostitory and install dependencies (requirements.txt). 
 
 ### Download the raw data
 Download the dataset from:
