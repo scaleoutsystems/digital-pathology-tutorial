@@ -12,9 +12,9 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ![Cell image](image.png)
 
-## Attaching a local data client to an existing FEDn network 
+## Participating as a data client in an existing FEDn network 
 
-The below instructions are to set up a local data provider (client in federated learning terminology) to join a federation (FEDn network). We here assume that you have access to a deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio or [follow the instructions here](https://github.com/scaleoutsystems/fedn) to set up the network yourself on your own servers.   
+The below instructions are to set up a local data provider (client in federated learning terminology) to join an exisiting federation (FEDn network). We here assume that you already have access to a deployed FEDn Network (connection information provided by the alliance manager). If this is not the case, to set up a FEDn network either obtain an account in Scaleout Studio or [follow the instructions here](https://github.com/scaleoutsystems/fedn) to set up the network on your own servers.   
 
 Attaching a data client involves three main steps:
 
