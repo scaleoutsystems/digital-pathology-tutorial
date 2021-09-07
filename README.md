@@ -120,7 +120,7 @@ python prepare_dataset.py NR_OF_PARTITIONS
 ```
 where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
-## Training, evaluating and serving the FEDn model (STACKn / Scaleout Studio)
+## Training, evaluating and serving the model in STACKn / Scaleout Studio
 
 The following sections assumes that you are working in a Scaleout Studio project ([Scaleout Studio](https://www.scaleoutsystems.com])). In your project in Studio, deploy a Jupyter Lab instance from the default 'Jupyter STACKn' image, mounting the project-volume and minio-volume volumes. Then open up a terminal (in your lab instance) and clone this repostitory onto project-volume.
 
