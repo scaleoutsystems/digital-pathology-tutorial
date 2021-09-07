@@ -12,11 +12,19 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ![Cell image](image.png)
 
-## Configuring a client to attach to a FEDn network 
+## Attaching a local data client to an existing FEDn network 
 
-The below instructions assume that you have access to a pre-deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio or follow the instructions here to set up the network yourself on your own servers: https://github.com/scaleoutsystems/fedn.   
+The below instructions are to set up a local data provider (client in federated learning terminology) to join a federation (FEDn network). We here assume that you have access to a deployed FEDn Network. To set up a FEDn network either obtain an account in Scaleout Studio or [follow the instructions here](https://github.com/scaleoutsystems/fedn) to set up the network yourself on your own servers.   
 
-### Set up the client structure and local environment
+Attaching a data client involves three main steps:
+
+1. Setting up the local compute environment / install dependencies. 
+2. Stage local training and validation data.
+3. Start the *fedn client* pointing to a Reducer endpoint. 
+
+During step 3, a compute package will be downloaded and staged locally, readying the client for executing training and validation requests.
+
+### 1. Set up the client structure and local environment
 
 On you local computer/device, create a folder with the following structure 
 ```yaml
@@ -31,7 +39,7 @@ pandas
 sklearn
 ```
 
-### Obtain a data partition
+### 2. Obtain a data partition
 
 Obtain a data partition (if you are doing this tuturial as part of a workshop you will obtain a download link from the instructor, if not see instructions below to download the raw data and create your own data partitions). 
 
@@ -46,7 +54,7 @@ aml-client
 
 *(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create your own partitions)*
 
-### Start a native client (OSX/Linux)
+### 3. Start a native client (OSX/Linux)
 
 Standing in your created folder: 
 
@@ -75,6 +83,7 @@ $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
 ## Preparing your own data partitions 
+
 The following instructions are for those that want to prepare their own data partiations from the raw dataset (for example, if you want to change the number of partitions). First, clone this repostitory and install dependencies (requirements.txt). 
 
 ### Download the raw data
@@ -102,7 +111,6 @@ Follow the instructions in the notebook 'AML_centralized.ipynb'.
 
 ### Plotting a confusion matrix for a given model version in the FEDn model trail 
 Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible from the Minio instance in your Studio project, if this is not the case, some modifications may be needed.)
-
 
 ## References
 <a id="1">[1]</a> 
