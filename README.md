@@ -34,7 +34,7 @@ aml-client
 ```
 requirements.txt should have the same content as the corresponding file in this repostitory. 
 ```yaml
-tensorflow
+tensorflow<2.6.0
 pandas
 sklearn
 ```
