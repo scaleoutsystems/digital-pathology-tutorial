@@ -41,7 +41,10 @@ sklearn
 
 ### 2. Obtain a data partition
 
-Obtain a data partition (if you are doing this tuturial as part of a workshop you will obtain a download link from the instructor, if not see instructions below to download the raw data and create your own data partitions). 
+Obtain a data partition: 
+
+1. If you are doing this tuturial as part of a workshop you will obtain a download link from the instructor.
+2. If not, see instructions below for how to download the raw data and create your own data partitions. 
 
 Unpack the downloaded file and copy the content to the 'data' folder.
 ```yaml
