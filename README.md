@@ -54,7 +54,9 @@ aml-client
 
 *(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create your own partitions)*
 
-### 3. Start a native client (OSX/Linux)
+### 3. Start a client 
+
+#### 3.1 Native client Linux/OSX
 
 Standing in your created folder: 
 
@@ -82,6 +84,18 @@ $ pip install -r requirements.txt
 $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
+### Docker
+
+1. Build the docker image:
+```bash
+docker build . -t aml-client:latest
+```
+
+2. Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
+```
+docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml --network fedn_default aml-client:latest fedn run client -in client.yaml 
+```
+
 ## Preparing your own data partitions 
 
 The following instructions are for those that want to prepare their own data partiations from the raw dataset (for example, if you want to change the number of partitions). First, clone this repostitory and install dependencies (requirements.txt). 
@@ -101,8 +115,9 @@ python prepare_dataset.py NR_OF_PARTITIONS
 ```
 where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
-## Training, evaluating and serving the FEDn model (Scaleout Studio)
-The following sections assumes that you are working in a Scaleout Studio project ([Scaleout Studio](https://www.scaleoutsystems.com])). In your project in Studio, deploy a Jupyter Lab instance from the default 'Jupyter STACKn' image, mounting the project-volume and minio-volume volumes. Then open up a terminal (in your lab instance) and clone this repostitory onto project-volume (to make your work persistant between lab sessions).
+## Training, evaluating and serving the FEDn model (STACKn / Scaleout Studio)
+
+The following sections assumes that you are working in a Scaleout Studio project ([Scaleout Studio](https://www.scaleoutsystems.com])). In your project in Studio, deploy a Jupyter Lab instance from the default 'Jupyter STACKn' image, mounting the project-volume and minio-volume volumes. Then open up a terminal (in your lab instance) and clone this repostitory onto project-volume.
 
 Obtain the raw data, ingest it to your project (for example by uploading it to Minio, then it will be accessible in the Lab session on the 'minio-volume') and create partitions as you see fit (see instructions above). 
 
@@ -110,7 +125,7 @@ Obtain the raw data, ingest it to your project (for example by uploading it to M
 Follow the instructions in the notebook 'AML_centralized.ipynb'. 
 
 ### Plotting a confusion matrix for a given model version in the FEDn model trail 
-Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible from the Minio instance in your Studio project, if this is not the case, some modifications may be needed.)
+Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible on the default path in the Minio instance in your Studio project, if this is not the case,  modify the notebook as needed.)
 
 ## References
 <a id="1">[1]</a> 
