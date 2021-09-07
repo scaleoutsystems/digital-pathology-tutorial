@@ -55,8 +55,9 @@ aml-client
 *(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create your own partitions)*
 
 ### 3. Start a client 
+You can either start a client natively on Linux/OSX, or use the provided Dockerfile in this 
 
-#### 3.1 Native client Linux/OSX
+#### Native client Linux/OSX
 
 Standing in your created folder: 
 
@@ -84,7 +85,8 @@ $ pip install -r requirements.txt
 $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
-### Docker
+#### Docker
+Download the Dockerfile (or clone this repository), then:
 
 1. Build the docker image:
 ```bash
