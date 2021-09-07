@@ -58,7 +58,7 @@ aml-client
 *(If you are not following this tutorial as part of a workshop, see instructions below for how to obtain the data and create your own partitions)*
 
 ### 3. Start a client 
-You can either start a client natively on Linux/OSX, or use the provided Dockerfile in this 
+You can either start a client natively on Linux/OSX, or use the provided Dockerfile in this repository. 
 
 #### Native client Linux/OSX
 
