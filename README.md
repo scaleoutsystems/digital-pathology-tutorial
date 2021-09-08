@@ -89,7 +89,11 @@ $ fedn run client -in client.yaml --name YOUR_CLIENT_NAME
 ```
 
 #### Docker
-Download the Dockerfile (or clone this repository), then:
+
+##### Using a prebuilt image
+docker pull scaleoutsystems/fedn-client-aml:latest
+
+##### Alternative - Download the Dockerfile (or clone this repository), then:
 
 1. Build the docker image:
 ```bash
@@ -103,7 +107,7 @@ docker network create fedn_default
 
 3. Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
 ```
-docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml fedn run client -in client.yaml 
+docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml scaleoutsystems/fedn-client-aml:latest fedn run client -in client.yaml 
 ```
 
 ## Preparing your own data partitions 
