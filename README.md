@@ -96,7 +96,12 @@ Download the Dockerfile (or clone this repository), then:
 docker build . -t aml-client:latest
 ```
 
-2. Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
+2. Create a docker network:
+```bash
+docker network create fedn_default
+```
+
+3. Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
 ```
 docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml fedn run client -in client.yaml 
 ```
