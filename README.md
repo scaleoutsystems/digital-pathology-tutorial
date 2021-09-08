@@ -101,7 +101,7 @@ docker pull scaleoutsystems/fedn-client-aml:latest
 Build the docker image:
 ```bash
 docker build . -t aml-client:latest
-
+```
 
 Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
 ```
