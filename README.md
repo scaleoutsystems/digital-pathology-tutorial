@@ -98,14 +98,14 @@ docker pull scaleoutsystems/fedn-client-aml:latest
 
 ##### Alternative - download the Dockerfile (or clone this repository), then:
 
-1. Build the docker image:
+Build the docker image:
 ```bash
 docker build . -t aml-client:latest
 
 
-3. Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
+Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
 ```
-docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml scaleoutsystems/fedn-client-aml:latest fedn run client -in client.yaml 
+docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml scaleoutsystems/fedn-client-aml:latest fedn run client -in client.yaml --name YOUR_CLIENT_NAME 
 ```
 
 ## Preparing your own data partitions 
