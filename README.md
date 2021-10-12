@@ -1,6 +1,6 @@
 # Acute Myeloid Leukemia FEDn/Studio example 
 
-This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in [[1]](#1). Compared to the original work, this project is built with a lighter Convulutional Neural Network and downsampled images to reduce the computation time and resources.  
+This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in [[1]](#1). Compared to the original work, this project is built with a lighter Convolutional Neural Network and downsampled images to reduce the computation time and resources.  
 
 The purpose of the model is, as described by the original authors: 
 
