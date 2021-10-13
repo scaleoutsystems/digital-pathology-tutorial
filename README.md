@@ -1,6 +1,18 @@
-# Acute Myeloid Leukemia FEDn/Studio example 
+# Acute Myeloid Leukemia classification using a federated Convolutional Neural Network 
 
-This example project is a lighter version of Acute Myeloid Leukemia (AML) classification problem addressed in [[1]](#1). Compared to the original work, this project is built with a lighter Convolutional Neural Network and downsampled images to reduce the computation time and resources.  
+The purpose of this tutorial is to explore the key features of FEDn and STACKn through a use-case in digital pathology. We will:
+
+1. Train a model on data from one clinic. 
+2. Serve the model in production using Tensorflow Serving.
+3. Deploy a FEDn network, invite other clients to join, and try to improve the model using federated learning.   
+
+If you are doing the tutorial as part of an instructor-led workshop, you will take the role of a client setting up a local data node on your own local hardware and join a federation. You will recive additional instructions for how to obtain a local dataset, and the configuration files needed to attach to the federation. 
+
+If you are doing the tutorial on your own, you need access to a working deployment of [STACKn](https://github.com/scaleoutsystems/stackn) to do the model serving part of the tutorial. The federated learnig part can be completed using a deployed [FEDn network](https://github.com/scaleoutsystems/fedn). You also need to download the data and prepare your own data partitions (see instructions below). The data download can take up to a few hours depending on your network connection.    
+
+## The model 
+
+This model we will work with is a lighter version of the model developed for the Acute Myeloid Leukemia (AML) classification problem in [[1]](#1). Compared to the original work, here the Convolutional Neural Network (CNN) is slightly simplified, and the images are downssampled in order to reduce the computation time and resources. This tutorial can be completed without access to GPU resources.    
 
 The purpose of the model is, as described by the original authors: 
 
@@ -127,9 +139,9 @@ python prepare_dataset.py NR_OF_PARTITIONS
 ```
 where NR_OF_PARTITIONS are the number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
-## Training, evaluating and serving the model in STACKn / Scaleout Studio
+## Training, evaluating and serving the model in STACKn 
 
-The following sections assumes that you are working in a Scaleout Studio project ([Scaleout Studio](https://www.scaleoutsystems.com])). In your project in Studio, deploy a Jupyter Lab instance from the default 'Jupyter STACKn' image, mounting the project-volume and minio-volume volumes. Then open up a terminal (in your lab instance) and clone this repostitory onto project-volume.
+The following sections assumes that you are working in a STACKn project ([STACKn](https://github.com/scaleoutsystems/stackn)). In your project, deploy a Jupyter Lab instance from the default 'Jupyter STACKn' image, mounting the project-volume and minio-volume volumes. Then open up a terminal (in your lab instance) and clone this repostitory onto 'project-volume'.
 
 Obtain the raw data, ingest it to your project (for example by uploading it to Minio, then it will be accessible in the Lab session on the 'minio-volume') and create partitions as you see fit (see instructions above). 
 
