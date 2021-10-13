@@ -134,10 +134,10 @@ The following sections assumes that you are working in a Scaleout Studio project
 Obtain the raw data, ingest it to your project (for example by uploading it to Minio, then it will be accessible in the Lab session on the 'minio-volume') and create partitions as you see fit (see instructions above). 
 
 ### Training a centralized model for a given data partitions 
-Follow the instructions in the notebook 'AML_centralized.ipynb'. 
+Follow the instructions in the notebook 'single_clinic.ipynb'. 
 
 ### Plotting a confusion matrix for a given model version in the FEDn model trail 
-Follow the instructions in the notebook 'Evalutate.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible on the default path in the Minio instance in your Studio project, if this is not the case,  modify the notebook as needed.)
+Follow the instructions in the notebook 'use_fedn_model.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible on the default path in the Minio instance in your Studio project, if this is not the case,  modify the notebook as needed.)
 
 ## References
 <a id="1">[1]</a> 
