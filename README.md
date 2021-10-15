@@ -7,7 +7,7 @@ The purpose of this tutorial is to explore the key features of FEDn and STACKn t
 3. Export the weights in the pre-trained network for use as a seed model in a FEDn federation.
 4. Deploy a FEDn network, configure local clients, and try to improve the model using federated learning.
 
-The local datasets used for each site/clinic/client are created by partitioning a publicly available dataset. If you are doing the tutorial as part of an instructor-led workshop, you will take the role of a client setting up a local data node on your own local hardware and join a federation that is deployed by the instructor. You will recive additional instructions for how to obtain your data partition, as well as the configuration file needed to attach to the federation. 
+The local datasets used for each site/clinic/client are created by partitioning a publicly available dataset. If you are doing the tutorial as part of an instructor-led workshop, you will take the role of a client setting up a local data node on your own local hardware and join a federation that is deployed by the instructor. You will receive additional instructions for how to obtain your data partition, as well as the configuration file needed to attach to the federation. 
 
 If you are doing the tutorial on your own, you need access to a working deployment of [STACKn](https://github.com/scaleoutsystems/stackn) to do the model serving part of the tutorial. The federated learning part can be completed using a deployed [FEDn network](https://github.com/scaleoutsystems/fedn). You will need to download the raw data and prepare your own data partitions (see instructions below). The data download can take up to a few hours depending on your network connection.    
 
