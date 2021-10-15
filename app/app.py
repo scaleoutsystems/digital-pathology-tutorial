@@ -33,7 +33,7 @@ app.layout = html.Div([
                 [
                     html.Div(
                         [
-                            html.A('Image Classifier Application',
+                            html.A('AML Classifier',
                                    href='/', className='navbar-brand')
                         ], className='navbar-header'), html.Div(
                         [
@@ -47,9 +47,9 @@ app.layout = html.Div([
         ], className='navbar navbar-inverse navbar-fixed-top'),
     html.Div(
         [
-            html.H1('Image Classifier Application',
+            html.H1('AML Classifier',
                     className='text-center'),
-            html.P('Classify Images of Flowers',
+            html.P('Classify Images of cells',
                    className='text-center'),
             html.Hr(),
             html.Div(
@@ -93,23 +93,29 @@ app.layout = html.Div([
               State('upload-image', 'last_modified'))
 def update_output(list_of_contents, list_of_names, list_of_dates):
     print("In: update output", flush=True)
-    # for content in list_of_contents:
-    # print(list_of_contents)
+
     image_html = []
     url = 'https://r5c50cce0.studio.scaleoutsystems.com/v1/models/models:predict'
     pred_res = []
     try:
         content_type, content_string = list_of_contents.split(',')
+
         print(content_type)
         contentb64_decode = base64.b64decode(content_string)
         file_obj = io.BytesIO(contentb64_decode)
-        imgtest = numpy.load(file_obj)
+        with open('temp.npz','wb') as fh:
+            fh.write(file_obj.getbuffer())
+            fh.flush()
+
+        imgtest = numpy.load('temp.npz')
+        print(numpy.shape(imgtest))
         imgtest=numpy.expand_dims(imgtest,0)
         inp = {"inputs": imgtest.tolist()}
 
         # If you are running locally with self signed certificate, then CHANGE the verify variable to False
         verify = True
         try:
+            print("Predicting")
             res = requests.post(url, json=inp)
         except Exception as e:
             print(e)
@@ -117,16 +123,30 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
 
         #image_html = html.Img(
         #    src='data:image/png;base64,{}'.format(content_string), width="50%")
+        class_names = ['Basophil',
+                       'Erythroblast',
+                       'Eosinophil',
+                       'Smudge cell',
+                       'Lymphocyte (atypical)',
+                       'Lymphocyte (typical)',
+                       'Metamyelocyte',
+                       'Monoblast',
+                       'Monocyte',
+                       'Myelocyte',
+                       'Myeloblast',
+                       'Neutrophil (band)',
+                       'Neutrophil (segmented)',
+                       'Promyelocyte (bilobled)',
+                       'Promyelocyte',
+                       'Total']
+        classification = numpy.argmax(res.json()['outputs'])
 
-        for key, value in res_dict.items():
-            html.Span(key, style={'font-weight': 'bold'})
-            test = " : " + str(value)
-            print(test)
-            pred_res.append(html.Div(
+        pred_res.append(html.Div(
             [
-                html.B(key, style={'font-weight': 'bold'}),
-                html.Span([test])
+                #html.B(key, style={'font-weight': 'bold'}),
+                html.Span(["Prediction: {} ({})".format(class_names[classification],res_dict[0][classification])])
             ], style={'font-size': '20px'}))
+
     except Exception as err:
         print("No image.")
         print(err)
