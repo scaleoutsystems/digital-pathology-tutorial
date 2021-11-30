@@ -1,19 +1,20 @@
 # Acute Myeloid Leukemia classification using a federated Convolutional Neural Network 
 
-The purpose of this tutorial is to explore the key features of FEDn and STACKn through a use-case in digital pathology. We will:
+The purpose of this workshop is to explore the possibilities of federate learning (FL) through a realistic use-case in digital pathology. We will work with a scenario where a public research dataset is partitioned into a number of subsets, where each subset would corresponds to private data on one hostipital/clinic. We will then use FEDn and STACKn to: 
 
-1. Train a model on data from one clinic. 
-2. Serve the model in production using Tensorflow Serving.
-3. Export the weights in the pre-trained network for use as a seed model in a FEDn federation.
-4. Deploy a FEDn network, configure local clients, and try to improve the model using federated learning.
+1. Train a model on data from one clinic (the model one client can obtain in isolation).  
+2. Export the weights in the pre-trained network for use as a seed model in a FEDn federation.
+3. Deploy a FEDn network, configure local clients, and try to improve the model using federated learning.
+4. (Optionally) Deploy the model in production.
+5. (Optionally) Deploy a simplistic app that lets a pathologist use it to classify images from a browser interface. 
 
-The local datasets used for each site/clinic/client are created by partitioning a publicly available dataset. If you are doing the tutorial as part of an instructor-led workshop, you will take the role of a client setting up a local data node on your own local hardware and join a federation that is deployed by the instructor. You will receive additional instructions for how to obtain your data partition, as well as the configuration file needed to attach to the federation. 
+The local datasets used for each site/clinic/client are created by partitioning a publicly available dataset. If you are doing the workshop led by an instructor, you will take the role of a client setting up a local data node on your own local hardware and join a federation that is deployed by the instructor. You will receive additional instructions for how to obtain your data partition, as well as the configuration file needed to attach to the federation. 
 
-If you are doing the tutorial on your own, you need access to a working deployment of [STACKn](https://github.com/scaleoutsystems/stackn) to do the model serving part of the tutorial. The federated learning part can be completed using a deployed [FEDn network](https://github.com/scaleoutsystems/fedn). You will need to download the raw data and prepare your own data partitions (see instructions below). The data download can take up to a few hours depending on your network connection.    
+If you are doing the tutorial on your own, you need access to a working deployment of [STACKn](https://github.com/scaleoutsystems/stackn) to do the model and app serving part of the tutorial (Steps 4,5). The federated learning part (1,2,3) can be completed with a deployed [FEDn network](https://github.com/scaleoutsystems/fedn). You will also need to download the raw data and prepare your own data partitions (see instructions below). The data download can take up to a few hours depending on your network connection.    
 
 ## The model 
 
-This model we will work with is a lighter version of the model developed for the Acute Myeloid Leukemia (AML) classification problem in [[1]](#1). Compared to the original work, here the Convolutional Neural Network (CNN) is slightly simplified, and the images are downssampled in order to reduce the computation time and resources. This tutorial can be completed without access to GPU resources.    
+This model we will work with is a slimmed down version of the model developed for the Acute Myeloid Leukemia (AML) classification problem in [[1]](#1). Compared to the original work, here the Convolutional Neural Network (CNN) is slightly simplified, and the images are downssampled in order to reduce the computation time and resources, so that the tutorial can be completed without access to GPU resources (a normal Linux or OSX laptop should be enough in most circumstances).    
 
 The purpose of the model is, as described by the original authors: 
 
@@ -27,7 +28,7 @@ Our approach holds the potential to be used as a classification aid for examinin
 
 ## Preparing the data partitions 
 
-The following instructions are for those preparing their own data partitions from the raw dataset. This is necessary if your are doing the tutorial on your own, if part of a Scaleout led workshop partitions will already be available in STACKn.
+The following instructions are for those preparing their own data partitions from the raw dataset. This is necessary if your are doing the tutorial on your own. If you take part in an instructor-led workshop, partitions will already be available for download.
 
 First, clone this repostitory and install the dependencies (requirements.txt). 
 
@@ -47,16 +48,13 @@ python prepare_dataset.py NR_OF_PARTITIONS
 where NR_OF_PARTITIONS are the desired number of equal sized splits of the dataset. The script will also downsample the images. To modify this behavior, simply edit prepare_dataset.py. 
 
 ### Training a centralized model for a given data partition (single clinic)
-The next step is to gain some experience trainig the model using the dataset from a single clinic (patition). To do this, follow the instructions in the notebook 'single_clinic.ipynb'. 
-
-### Serving the model (optional)
-If you are working in STACKn, you can easily deploy and serve the model using Tensorflow Serving by following the intructions in the notebook 'single_clinic.ipynb'. This step is not necessary in order to proceed with the federated training. 
+The next step is to gain some experience training the model using the dataset from a single clinic (one partition). To do this, follow the instructions in the notebook 'single_clinic.ipynb'. 
 
 ### Prepare an initial model for use in FEDn
 In the final cell of 'single_clinic.ipynb' you will save the weights from the pre-trained single-clinic model as an initial model for use to seed the FEDn federation.  
 
 ## Set up a FEDn network 
-Again, if you are working in STACKn/Studio as part of a workshop, you will set up the FEDn network in collaboration with the instructor. If you are working in your own, follow the instructions [here](https://github.com/scaleoutsystems/fedn) to deploy a FEDn network on your own hardware.  
+Again, if you are working in STACKn/Studio as part of a workshop, you will set up the FEDn network in collaboration with the instructor. If you are working on your own, follow the instructions [here](https://github.com/scaleoutsystems/fedn) to deploy a FEDn network on your own hardware.  
 
 Configure FEDn from the UI by uploading the compute package in 'package/package.tar.gz' and the seed file created in the previous step. 
 
@@ -157,7 +155,12 @@ docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path
 ### Evaulating a given model version in the FEDn model trail 
 Follow the instructions in the notebook 'use_fedn_model.ipynb' (Replace the UUID in the notebook with the desired version from the FEDn model trail. Here we assume that the model trail is accessible on the default path in the Minio instance in your Studio project, if this is not the case,  modify the notebook as needed.)
  
+### Serving the model (optional)
+If you are working in STACKn, you can easily deploy and serve the single clinic model, or any version of the global model using Tensorflow Serving by following the intructions in the notebook 'single_clinic.ipynb'. You can also edit this file to instead/in addition serve any version of the global federated model. 
 
+### Deploying the prediction app
+1. Serve the model you want to use with Tensorflow serving (see previous step).
+2. Using the STACKn UI, start a notebook mounting the "project-volume". Then, from a terminal, clone this repository onto "project-volume". Edit "app.py" to provide your serving endpoint (make sure that the enpoint is public). From the "Serving" menu, then create a "Dash App", with "Persistent Volume" set to "project-volume" and "Path to folder" set to "aml-example-project/app". 
 
 ## References
 <a id="1">[1]</a> 
