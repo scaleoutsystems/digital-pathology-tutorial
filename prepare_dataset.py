@@ -8,8 +8,7 @@ if __name__ == '__main__':
 
     nr_of_partitions = int(sys.argv[1])
 
-    #amldata = r'dataset/raw/AML-Cytomorphology/'
-    amldata = r'/home/jovyan/work/minio-vol/data/AML-Cytomorphology'
+    amldata = r'dataset/raw/AML-Cytomorphology/'
     classes = {}
     class_index = 0
     class_sizes = {}
