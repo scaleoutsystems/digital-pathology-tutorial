@@ -80,9 +80,9 @@ aml-client
 ```
 requirements.txt should have the same content as the corresponding file in this repostitory. 
 ```yaml
-tensorflow<2.6.0
+tensorflow==2.7.2
 pandas
-sklearn
+scikit-learn
 ```
 
 ### 2. Obtain a data partition
