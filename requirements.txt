@@ -1,5 +1,5 @@
 tensorflow==2.7.1
 pandas
-sklearn
+scikit-learn
 matplotlib
 pillow
