@@ -149,7 +149,7 @@ docker build . -t aml-client:latest
 
 Start a client (edit the path of the volume mounts to provide the absolute path to your local folder)
 ```
-docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml scaleoutsystems/fedn-client-aml:latest fedn run client -in client.yaml --name YOUR_CLIENT_NAME 
+docker run -v /absolute-path-to-this-folder/data/:/app/data:ro -v /absolute-path-to-this-folder/client.yaml:/app/client.yaml scaleoutsystems/fedn-client-aml:latest fedn run client -in client.yaml --name YOUR_CLIENT_NAME --secure=True --force-ssl 
 ```
 
 ### Evaulating a given model version in the FEDn model trail 
