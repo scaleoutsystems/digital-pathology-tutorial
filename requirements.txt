@@ -1,4 +1,6 @@
 tensorflow==2.10
+numpy
+mlflow 
 pandas
 scikit-learn
 matplotlib

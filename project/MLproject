@@ -1,0 +1,10 @@
+name: aml 
+
+docker_env:
+  image: aml-client
+
+entry_points:
+  train:
+    command: python train.py
+  validate:
+    command: python validate.py 
