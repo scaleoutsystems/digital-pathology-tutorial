@@ -1,6 +1,6 @@
 # Acute Myeloid Leukemia classification using a federated Convolutional Neural Network 
 
-The purpose of this workshop is to explore the possibilities of federate learning (FL) through a realistic use-case in digital pathology. We will work with a scenario where a public research dataset is partitioned into a number of subsets, where each subset would corresponds to private data on one hostipital/clinic. We will then use FEDn and STACKn to: 
+The purpose of this workshop is to explore the possibilities of federate learning (FL) through a realistic use-case in digital pathology. We will work with a scenario where a public research dataset is partitioned into a number of subsets, where each subset would corresponds to private data on one hostipital/clinic. We will then use Studio and FEDn to: 
 
 1. Train a model on data from one clinic (the model one client can obtain in isolation).  
 2. Export the weights in the pre-trained network for use as a seed model in a FEDn federation.
@@ -54,7 +54,7 @@ The next step is to gain some experience training the model using the dataset fr
 In the final cell of 'single_clinic.ipynb' you will save the weights from the pre-trained single-clinic model as an initial model for use to seed the FEDn federation.  
 
 ## Set up a FEDn network 
-Again, if you are working in STACKn/Studio as part of a workshop, you will set up the FEDn network in collaboration with the instructor. If you are working on your own, follow the instructions [here](https://github.com/scaleoutsystems/fedn) to deploy a FEDn network on your own hardware.  
+Again, if you are working in Studio as part of a workshop, you will set up the FEDn network in collaboration with the instructor. If you are working on your own, follow the instructions [here](https://github.com/scaleoutsystems/fedn) to deploy a FEDn network on your own hardware.  
 
 Configure FEDn from the UI by uploading the compute package in 'package/package.tar.gz' and the seed file created in the previous step. 
 
